@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Clara Styllus · Catálogo</title>
-<meta name="description" content="6 peças · Blusa, Vestido, Calça, Outras. Peça pelo WhatsApp.">
+<meta name="description" content="5 peças · Blusa, Calça, Outras, Vestido. Peça pelo WhatsApp.">
 <meta property="og:title" content="Clara Styllus · Catálogo">
-<meta property="og:description" content="6 peças · Blusa, Vestido, Calça, Outras. Peça pelo WhatsApp.">
+<meta property="og:description" content="5 peças · Blusa, Calça, Outras, Vestido. Peça pelo WhatsApp.">
 <meta property="og:image" content="https://kayansantiago-rgb.github.io/catalogo-clara-styllus/fotos/21-1793100643799.jpg">
 <meta name="theme-color" content="#2b1d22">
 <link rel="icon" href="assets/icone.png">
@@ -19,8 +19,9 @@
   --serif: 'Playfair Display', Georgia, serif; --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { margin: 0; font-family: var(--sans); color: var(--texto); background: var(--creme); overflow-x: hidden; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
+/* A faixa inclinada e a sacola escondida passam da largura da tela: corta sem criar rolagem para o lado. */
+body { margin: 0; font-family: var(--sans); color: var(--texto); background: var(--creme); overflow-x: hidden; overflow-x: clip; max-width: 100%; }
 img { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; cursor: pointer; }
 a { color: inherit; }
@@ -142,6 +143,43 @@ main { position: relative; z-index: 2; background: var(--creme); }
 .preco s { color: var(--suave); font-size: 13px; }
 .preco b { font-size: 20px; font-weight: 800; color: var(--rosa-escuro); }
 .preco small { width: 100%; font-size: 12px; color: var(--suave); }
+.preco .pix { width: 100%; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #138a5e; }
+.preco .pix svg { width: 14px; height: 14px; flex: none; }
+.preco .pix em { font-style: normal; font-weight: 600; color: var(--suave); white-space: nowrap; }
+@media (max-width: 560px) { .preco .pix { font-size: 12px; gap: 4px; } .preco .pix svg { width: 12px; height: 12px; } .grade .pix-din { display: none; } }
+/* Formas de pagamento (peça e sacola) */
+.pagamentos { display: flex; flex-wrap: wrap; gap: 7px; margin: 4px 0 2px; }
+.pagamentos span { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px; background: #fff; border: 1.5px solid var(--borda); font-size: 12.5px; font-weight: 700; color: var(--texto); }
+.pagamentos svg { width: 16px; height: 16px; flex: none; }
+.pagamentos .pg-pix { color: #138a5e; border-color: rgba(50,188,173,.45); background: #effaf6; }
+.pagamentos .pg-pix svg { color: #32bcad; }
+.pagamentos .pg-din svg { color: #2f8f4e; }
+.pagamentos .pg-cartao svg { color: var(--rosa); }
+.gaveta-pix { display: flex; justify-content: space-between; align-items: center; margin-top: -6px; font-size: 13.5px; font-weight: 700; color: #138a5e; }
+.gaveta-pix b { font-size: 16px; }
+/* Cartão "Formas de pagamento" com o valor em cada forma */
+.pg-cartao-box { background: #fff; border: 1px solid var(--borda); border-radius: 18px; padding: 6px 14px; box-shadow: 0 14px 30px -24px rgba(43,29,34,.5); }
+.pg-cartao-box h5 { margin: 8px 0 2px; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--suave); }
+.pg-linha { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px dashed var(--borda); }
+.pg-cartao-box h5 + .pg-linha { border-top: 0; }
+.pg-linha i { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: var(--rosa-claro); color: var(--rosa-escuro); }
+.pg-linha i svg { width: 18px; height: 18px; }
+.pg-linha.pix i { background: #e8f8f3; color: #1d9b83; }
+.pg-linha.din i { background: #edf7ef; color: #2f8f4e; }
+.pg-linha span { font-size: 13.5px; font-weight: 700; line-height: 1.2; }
+.pg-linha span small { display: block; font-weight: 500; font-size: 11.5px; color: var(--suave); }
+.pg-linha b { font-size: 15px; white-space: nowrap; }
+.pg-linha.pix b, .pg-linha.din b { color: #138a5e; }
+.pg-linha em { font-style: normal; font-size: 10.5px; font-weight: 800; color: #fff; background: #1d9b83; border-radius: 999px; padding: 2px 7px; margin-left: 4px; vertical-align: 2px; }
+/* Faixa de benefícios */
+.beneficios { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1180px; margin: 34px auto 0; padding: 0 22px; }
+.beneficio { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 20px; background: #fff; border: 1px solid var(--borda); box-shadow: 0 12px 30px -22px rgba(43,29,34,.45); }
+.beneficio i { width: 42px; height: 42px; flex: none; border-radius: 14px; display: grid; place-items: center; background: var(--rosa-claro); color: var(--rosa-escuro); }
+.beneficio i svg { width: 22px; height: 22px; }
+.beneficio.pix i { background: #e8f8f3; color: #1d9b83; }
+.beneficio b { display: block; font-size: 14.5px; color: var(--texto); }
+.beneficio small { display: block; font-size: 12.5px; color: var(--suave); line-height: 1.35; }
+@media (max-width: 860px) { .beneficios { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 26px; padding: 0 14px; } .beneficio { padding: 12px; gap: 10px; border-radius: 16px; } .beneficio i { width: 36px; height: 36px; border-radius: 12px; } .beneficio b { font-size: 13px; } .beneficio small { font-size: 11.5px; } }
 .bt-add { position: absolute; right: 12px; bottom: 12px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--vinho); color: #fff; display: grid; place-items: center;
   box-shadow: 0 10px 20px -8px rgba(43,29,34,.7); transition: transform .2s, background .2s; }
 .bt-add:hover { background: var(--rosa); transform: scale(1.08); }
@@ -179,6 +217,34 @@ main { position: relative; z-index: 2; background: var(--creme); }
 .fechar { position: absolute; right: 14px; top: 14px; z-index: 3; width: 42px; height: 42px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); display: grid; place-items: center; box-shadow: 0 6px 16px rgba(0,0,0,.18); }
 .fechar svg { width: 18px; height: 18px; }
 .aviso-escolha { color: #b3372c; font-size: 13px; font-weight: 600; }
+.prov-txt .preco .pix, .prov-txt .preco small { display: none; }
+.prov-txt .preco-pix-g { display: flex; align-items: center; gap: 6px; margin-top: -6px; font-size: 14.5px; font-weight: 800; color: #138a5e; }
+.prov-txt .preco-pix-g svg { width: 16px; height: 16px; }
+.prov-txt .preco-pix-g em { font-style: normal; font-weight: 600; color: var(--suave); }
+.h4-tam b { color: var(--vinho); letter-spacing: 0; text-transform: none; font-size: 13px; margin: 0 auto 0 -4px; }
+#esc-tam button { min-width: 50px; height: 50px; padding: 0 12px; border-radius: 16px; font-size: 15px; }
+.prov-acoes { position: sticky; bottom: 0; z-index: 4; margin: 6px -30px -28px; padding: 14px 30px 18px; background: var(--creme); box-shadow: 0 -14px 24px -16px rgba(43,29,34,.35); border-top: 1px solid var(--borda); }
+.prov-acoes { flex-wrap: nowrap !important; align-items: center; }
+.prov-acoes .bt-fav-g, .prov-acoes .bt-sacola-g { flex: 0 0 52px !important; width: 52px; height: 52px; border-radius: 16px; }
+.bt-sacola-g { position: relative; display: grid; place-items: center; padding: 0; border: 1.5px solid var(--borda); background: #fff; color: var(--vinho); transition: transform .15s, border-color .15s; }
+.bt-sacola-g:hover { border-color: var(--vinho); transform: translateY(-1px); }
+.bt-sacola-g svg { width: 22px !important; height: 22px !important; }
+.bt-sacola-g b { position: absolute; right: 7px; bottom: 6px; width: 17px; height: 17px; border-radius: 50%; background: var(--vinho); color: #fff; font-size: 13px; line-height: 17px; text-align: center; }
+.prov-acoes .bt-fav-g { border-radius: 16px; }
+.prov-acoes .bt-reservar { flex: 1 1 auto !important; order: 0 !important; height: 52px; padding: 0 18px; border-radius: 16px; justify-content: center; gap: 9px; font-size: 15.5px; white-space: nowrap;
+  background: var(--vinho); color: #fff; box-shadow: 0 14px 28px -14px rgba(43,29,34,.8); }
+.prov-acoes .bt-reservar:hover { box-shadow: 0 18px 32px -14px rgba(43,29,34,.9); }
+.prov-acoes .bt-reservar svg { width: 19px; height: 19px; color: var(--ouro-claro); }
+.prov-retira { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--suave); margin-top: -2px; }
+.prov-retira svg { width: 14px; height: 14px; }
+@media (max-width: 860px) {
+  .cortina { padding: 0; place-items: end center; }
+  .provador { width: 100%; max-height: 94svh; border-radius: 26px 26px 0 0; transform: translateY(60px); box-shadow: 0 -20px 60px -20px rgba(0,0,0,.5); }
+  .prov-fotos { aspect-ratio: 4 / 5 !important; max-height: 62svh; width: 100%; }
+  .prov-txt { padding: 20px 18px 0; gap: 12px; }
+  .prov-txt h2 { font-size: 28px; }
+  .prov-acoes { margin: 4px -18px 0; padding: 12px 18px calc(14px + env(safe-area-inset-bottom)); }
+}
 
 /* Sacola */
 .gaveta { position: fixed; top: 0; right: 0; bottom: 0; z-index: 70; width: min(420px, 100%); background: var(--creme); box-shadow: -30px 0 60px rgba(0,0,0,.25); display: flex; flex-direction: column;
@@ -539,6 +605,8 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
 
 <div class="faixa" aria-hidden="true"><div id="faixa"></div></div>
 
+<section class="beneficios" id="beneficios" aria-label="Formas de pagamento e reserva"></section>
+
 <main id="vitrine">
   <section class="chegou" id="chegou" hidden>
     <div class="chegou-cab">
@@ -595,7 +663,7 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
   <button class="fechar lupa-fechar" id="lupa-fechar" aria-label="Fechar">✕</button>
 </div>
 
-<script id="dados" type="application/json">{"loja":"Clara Styllus","titulo":"","kicker":"Catálogo · novembro 2026","subtituloProprio":false,"subtitulo":"Escolha suas peças favoritas, monte a sua sacola e mande o pedido direto no nosso WhatsApp.","whatsapp":"","telefone":"","instagram":"","endereco":"Rua Siqueira Campos, 013 - Centro","cidade":"Esperantina - TO","parcelas":3,"mostrarPreco":true,"pedidos":"https://script.google.com/macros/s/AKfycbymvCPgcHVqnFta2YoArJXojmoNIMEz2JjnPH0H8PJT2QXa36z87iVPD7ICDEO5hp3R5w/exec","prazoReserva":7,"tema":{"id":"classico","fim":""},"medidas":null,"capa":"","atualizado":"25/11/2026","categorias":["Blusa","Vestido","Calça","Outras"],"tamanhos":["P","M","G","44","45"],"cores":["Preto","Branco","Amarelo","Nude","Verde","vermelha","Vermelho"],"pecas":[{"id":21,"nome":"Blusa crochê","categoria":"Blusa","tamanhos":["P","M","G"],"cores":["Preto","Branco"],"preco":22090,"de":null,"varia":false,"fotos":["fotos/21-1793100643799.jpg","fotos/22-1793100643815.jpg"],"giro":[],"mais":[],"video":"","lk":19,"novo":false,"chegou":false,"top":true,"ultima":false,"variantes":[{"id":21,"t":"G","c":"Preto"},{"id":22,"t":"P","c":"Branco"},{"id":23,"t":"M","c":"Branco"},{"id":24,"t":"G","c":"Branco"}],"destaque":2,"num":"01"},{"id":25,"nome":"BLUSA FLOR","categoria":"Blusa","tamanhos":["P","M"],"cores":["Preto","Branco","Nude","Amarelo","Verde"],"preco":13290,"de":null,"varia":false,"fotos":[],"giro":[],"mais":[],"video":"","lk":25,"novo":false,"chegou":false,"top":true,"ultima":false,"variantes":[{"id":25,"t":"P","c":"Preto"},{"id":28,"t":"M","c":"Branco"},{"id":29,"t":"P","c":"Nude"},{"id":30,"t":"M","c":"Nude"},{"id":31,"t":"P","c":"Amarelo"},{"id":33,"t":"P","c":"Verde"}],"destaque":2,"num":"02"},{"id":11,"nome":"VESTIDO CANELA","categoria":"Vestido","tamanhos":["45"],"cores":["Preto"],"preco":11000,"de":null,"varia":false,"fotos":["fotos/11-1791804757886.jpg","fotos/12-1791804811153.jpg"],"giro":[],"mais":[],"video":"","lk":10,"novo":false,"chegou":false,"top":true,"ultima":true,"variantes":[{"id":11,"t":"45","c":"Preto"}],"destaque":2,"num":"03"},{"id":13,"nome":"Vestido titulo","categoria":"Vestido","tamanhos":["P","M","G"],"cores":["Preto","Vermelho"],"preco":44090,"de":null,"varia":false,"fotos":["fotos/13-1793100513003.jpg","fotos/16-1793100513044.jpg"],"giro":[],"mais":[],"video":"","lk":13,"novo":false,"chegou":false,"top":false,"ultima":false,"variantes":[{"id":13,"t":"P","c":"Preto"},{"id":14,"t":"M","c":"Preto"},{"id":16,"t":"P","c":"Vermelho"},{"id":18,"t":"G","c":"Vermelho"}],"destaque":0,"num":"04"},{"id":3,"nome":"calça jeans","categoria":"Calça","tamanhos":["44"],"cores":["Preto","vermelha"],"preco":20500,"de":null,"varia":false,"fotos":["fotos/3-1791468023457.jpg","fotos/5-1791468049555.jpg"],"giro":[],"mais":[],"video":"","lk":2,"novo":false,"chegou":false,"top":false,"ultima":false,"variantes":[{"id":3,"t":"44","c":"Preto"},{"id":5,"t":"44","c":"vermelha"}],"destaque":0,"num":"05"},{"id":37,"nome":"PEÇAS PROMOÇÕES","categoria":"Outras","tamanhos":[],"cores":[],"preco":2000,"de":null,"varia":false,"fotos":[],"giro":[],"mais":[],"video":"","lk":37,"novo":false,"chegou":false,"top":false,"ultima":false,"variantes":[{"id":37,"t":"","c":""}],"destaque":0,"num":"06"}]}</script>
+<script id="dados" type="application/json">{"loja":"Clara Styllus","titulo":"","kicker":"Catálogo · novembro 2026","subtituloProprio":false,"subtitulo":"Escolha suas peças favoritas, monte a sua sacola e mande o pedido direto no nosso WhatsApp.","whatsapp":"","telefone":"","instagram":"","endereco":"Rua Siqueira Campos, 013 - Centro","cidade":"Esperantina - TO","parcelas":3,"mostrarPreco":true,"descontoPix":0,"pedidos":"https://script.google.com/macros/s/AKfycbymvCPgcHVqnFta2YoArJXojmoNIMEz2JjnPH0H8PJT2QXa36z87iVPD7ICDEO5hp3R5w/exec","prazoReserva":7,"tema":{"id":"classico","fim":""},"medidas":null,"capa":"","atualizado":"25/11/2026","categorias":["Blusa","Calça","Outras","Vestido"],"tamanhos":["P","M","G","44"],"cores":["Preto","Branco","Amarelo","Nude","Verde","vermelha","Vermelho"],"pecas":[{"id":21,"nome":"Blusa crochê","categoria":"Blusa","tamanhos":["M","G"],"cores":["Preto","Branco"],"preco":22090,"de":null,"varia":false,"fotos":["fotos/21-1793100643799.jpg","fotos/23-1793100643827.jpg"],"giro":[],"mais":[],"video":"","lk":19,"novo":false,"chegou":false,"top":true,"ultima":false,"variantes":[{"id":21,"t":"G","c":"Preto"},{"id":23,"t":"M","c":"Branco"}],"destaque":2,"num":"01"},{"id":28,"nome":"BLUSA FLOR","categoria":"Blusa","tamanhos":["P","M"],"cores":["Branco","Nude","Amarelo","Verde"],"preco":13290,"de":null,"varia":false,"fotos":[],"giro":[],"mais":[],"video":"","lk":25,"novo":false,"chegou":false,"top":true,"ultima":false,"variantes":[{"id":28,"t":"M","c":"Branco"},{"id":29,"t":"P","c":"Nude"},{"id":30,"t":"M","c":"Nude"},{"id":31,"t":"P","c":"Amarelo"},{"id":33,"t":"P","c":"Verde"}],"destaque":2,"num":"02"},{"id":3,"nome":"calça jeans","categoria":"Calça","tamanhos":["44"],"cores":["Preto","vermelha"],"preco":20500,"de":null,"varia":false,"fotos":["fotos/3-1791468023457.jpg","fotos/5-1791468049555.jpg"],"giro":[],"mais":[],"video":"","lk":2,"novo":false,"chegou":false,"top":false,"ultima":false,"variantes":[{"id":3,"t":"44","c":"Preto"},{"id":5,"t":"44","c":"vermelha"}],"destaque":0,"num":"03"},{"id":37,"nome":"PEÇAS PROMOÇÕES","categoria":"Outras","tamanhos":[],"cores":[],"preco":2000,"de":null,"varia":false,"fotos":[],"giro":[],"mais":[],"video":"","lk":37,"novo":false,"chegou":false,"top":false,"ultima":false,"variantes":[{"id":37,"t":"","c":""}],"destaque":0,"num":"04"},{"id":13,"nome":"Vestido titulo","categoria":"Vestido","tamanhos":["P","M","G"],"cores":["Preto","Vermelho"],"preco":44090,"de":null,"varia":false,"fotos":["fotos/13-1793100513003.jpg","fotos/18-1793100513068.jpg"],"giro":[],"mais":[],"video":"","lk":13,"novo":false,"chegou":false,"top":false,"ultima":false,"variantes":[{"id":13,"t":"P","c":"Preto"},{"id":14,"t":"M","c":"Preto"},{"id":18,"t":"G","c":"Vermelho"}],"destaque":0,"num":"05"}]}</script>
 <script>
 (() => {
   const D = JSON.parse(document.getElementById('dados').textContent);
@@ -617,6 +685,28 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
   const OK = 'onload="this.classList.add(\'ok\')" onerror="this.classList.add(\'ok\')"';
   const ICONE_LINK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="m16 6-4-4-4 4"/><path d="M12 2v13"/></svg>';
   const ICONE_GIRO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 4 0 1 1-6-3.8"/><path d="m13 6 3 2.2L13.6 11"/></svg>';
+  // Formas de pagamento e benefícios
+  const ICONE_PIX = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 17.3a2.9 2.9 0 0 1-2.1-.9l-3-3a.6.6 0 0 0-.8 0l-3 3a2.9 2.9 0 0 1-2.1.9H6l3.8 3.8a3 3 0 0 0 4.3 0l3.9-3.8h-.4ZM6.6 6.7a2.9 2.9 0 0 1 2.1.9l3 3c.2.2.6.2.8 0l3-3a2.9 2.9 0 0 1 2.1-.9h.4l-3.9-3.8a3 3 0 0 0-4.3 0L6 6.7h.6Z"/><path d="m21.1 9.9-2.3-2.3h-1.2c-.5 0-1 .2-1.4.6l-3 3a1.5 1.5 0 0 1-2.1 0l-3-3a2 2 0 0 0-1.4-.6H5.2L2.9 9.9a3 3 0 0 0 0 4.2l2.3 2.3h1.4c.5 0 1-.2 1.4-.6l3-3c.6-.6 1.5-.6 2.1 0l3 3c.4.4.9.6 1.4.6h1.2l2.3-2.3a3 3 0 0 0 .1-4.2Z"/></svg>';
+  const ICONE_DINHEIRO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></svg>';
+  const ICONE_CARTAO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>';
+  const ICONE_LOJA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
+  const ICONE_RELOGIO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  /** Preço no Pix e no dinheiro (com o desconto da loja), em centavos. */
+  const precoPix = (c) => Math.round(c * (100 - (D.descontoPix || 0)) / 100);
+  /** Selos com as formas de pagamento aceitas. */
+  const pagamentosHtml = () => `<div class="pagamentos">
+    <span class="pg-pix">${ICONE_PIX} Pix${D.descontoPix ? ` −${D.descontoPix}%` : ''}</span>
+    <span class="pg-din">${ICONE_DINHEIRO} Dinheiro${D.descontoPix ? ` −${D.descontoPix}%` : ''}</span>
+    <span class="pg-cartao">${ICONE_CARTAO} Cartão${D.parcelas ? ` até ${D.parcelas}x sem juros` : ''}</span></div>`;
+  /** Cartão "Formas de pagamento" com quanto fica em cada forma (valor em centavos). */
+  const pagamentosValorHtml = (v) => {
+    const off = D.descontoPix ? `<em>−${D.descontoPix}%</em>` : '';
+    const parc = D.parcelas > 1 && v >= D.parcelas * 1000 ? D.parcelas : 1;
+    return `<div class="pg-cartao-box"><h5>Formas de pagamento</h5>
+      <div class="pg-linha pix"><i>${ICONE_PIX}</i><span>Pix${off}<small>na loja, na hora de retirar</small></span><b>${brl(precoPix(v))}</b></div>
+      <div class="pg-linha din"><i>${ICONE_DINHEIRO}</i><span>Dinheiro${off}<small>à vista</small></span><b>${brl(precoPix(v))}</b></div>
+      <div class="pg-linha"><i>${ICONE_CARTAO}</i><span>Cartão<small>${parc > 1 ? 'crédito, sem juros' : 'débito ou crédito'}</small></span><b>${parc > 1 ? `${parc}x de ${brl(Math.ceil(v / parc))}` : brl(v)}</b></div></div>`;
+  };
 
   // ---------- Tema de época (Black Friday, Natal...): cores, frases e contagem regressiva até o fim
   const TEMAS = {
@@ -676,8 +766,15 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
   $('#subtitulo').textContent = T && !D.subtituloProprio ? T.sub : D.subtitulo;
   $('#hero-nums').innerHTML = [[D.pecas.length, D.pecas.length === 1 ? 'peça' : 'peças'], [D.categorias.length, D.categorias.length === 1 ? 'categoria' : 'categorias'],
     D.parcelas ? [`${D.parcelas}x`, 'sem juros'] : null].filter(Boolean).map(([n, t]) => `<div><b>${n}</b><span>${t}</span></div>`).join('');
-  const frases = [...(T ? T.frases : []), D.parcelas ? `Parcele em até ${D.parcelas}x sem juros` : null, 'Pix, cartão e dinheiro', 'Novidades toda semana', D.instagram ? `Siga ${D.instagram}` : null,
-    'Separamos a sua peça', 'Peça pelo WhatsApp'].filter(Boolean);
+  const frases = [...(T ? T.frases : []), D.parcelas ? `Parcele em até ${D.parcelas}x sem juros` : null,
+    D.descontoPix ? `${D.descontoPix}% off no Pix ou dinheiro` : 'Pix, cartão e dinheiro', 'Novidades toda semana', D.instagram ? `Siga ${D.instagram}` : null,
+    D.pedidos ? 'Reserve pelo site e retire na loja' : 'Separamos a sua peça', 'Peça pelo WhatsApp'].filter(Boolean);
+  $('#beneficios').innerHTML = [
+    ['pix', ICONE_PIX, D.descontoPix ? `${D.descontoPix}% off no Pix` : 'Pix', D.descontoPix ? 'e também no dinheiro' : 'na hora, sem taxa'],
+    ['', ICONE_DINHEIRO, 'Dinheiro', D.descontoPix ? `com ${D.descontoPix}% de desconto` : 'pagando na loja'],
+    ['', ICONE_CARTAO, D.parcelas ? `Até ${D.parcelas}x sem juros` : 'Cartão', D.parcelas ? 'no cartão de crédito' : 'débito e crédito'],
+    D.pedidos ? ['', ICONE_LOJA, 'Reserve e retire', `separamos por ${D.prazoReserva} dias`] : ['', ICONE_RELOGIO, 'Peça pelo WhatsApp', 'a gente separa pra você'],
+  ].map(([c, ic, b, s]) => `<div class="beneficio ${c}"><i>${ic}</i><div><b>${esc(b)}</b><small>${esc(s)}</small></div></div>`).join('');
   $('#faixa').innerHTML = [...frases, ...frases, ...frases, ...frases].map((f) => `<span>${esc(f)}</span>`).join('');
   $('#rod-endereco').textContent = [D.endereco, D.cidade].filter(Boolean).join(' · ');
   $('#rod-contato').innerHTML = [D.telefone && `<a href="${zap('Oi! Vim pelo catálogo.')}" target="_blank" rel="noopener">WhatsApp ${esc(D.telefone)}</a>`,
@@ -912,6 +1009,7 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
     p.video && `<span class="selo video">${ICONE_PLAY.replace('<svg', '<svg width="11" height="11"')} Vídeo</span>`, p.novo && '<span class="selo novo">Novidade</span>', p.de && `<span class="selo desc">−${Math.round((1 - p.preco / p.de) * 100)}%</span>`,
     p.top && '<span class="selo top">Mais vendida</span>', p.ultima && '<span class="selo ultima">Última peça</span>'].filter(Boolean).join('');
   const precoHtml = (p) => (D.mostrarPreco ? `<div class="preco">${p.de ? `<s>${brl(p.de)}</s>` : ''}<b>${p.varia ? 'a partir de ' : ''}${brl(p.preco)}</b>
+    ${D.descontoPix ? `<span class="pix">${ICONE_PIX}${brl(precoPix(p.preco))} <em>no Pix<span class="pix-din"> ou dinheiro</span></em></span>` : ''}
     ${D.parcelas && p.preco >= D.parcelas * 1000 ? `<small>ou ${D.parcelas}x de ${brl(Math.ceil(p.preco / D.parcelas))} sem juros</small>` : ''}</div>` : '');
 
   let observador = null;
@@ -1178,14 +1276,18 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
         <h2>${esc(p.nome)}</h2>
         <div class="selos" style="position:static;flex-direction:row;transform:none">${selos(p)}</div>
         ${precoHtml(p)}
-        ${p.tamanhos.length ? `<h4 class="h4-tam">Tamanho${tabMedidas ? '<button class="link-medidas" id="prov-medidas" type="button">📏 Qual o meu tamanho?</button>' : ''}</h4>
+        ${D.mostrarPreco && D.descontoPix ? `<span class="preco-pix-g">${ICONE_PIX}${brl(precoPix(p.preco))} <em>no Pix ou dinheiro</em></span>` : ''}
+        ${p.tamanhos.length ? `<h4 class="h4-tam">Tamanho<b id="tam-esc">${tam ? `· ${esc(tam)}` : ''}</b>${tabMedidas ? '<button class="link-medidas" id="prov-medidas" type="button">📏 Qual o meu tamanho?</button>' : ''}</h4>
           ${tabMedidas ? `<div class="medidas" id="medidas" hidden>${medidasHtml(tabMedidas, p)}</div>` : ''}<div class="escolha" id="esc-tam">${p.tamanhos.map((t) => `<button data-t="${esc(t)}" class="${t === tam ? 'sel' : ''}">${esc(t)}</button>`).join('')}</div>` : ''}
         ${p.cores.length ? `<h4>Cor</h4><div class="escolha" id="esc-cor">${p.cores.map((c) => `<button data-c="${esc(c)}" class="${c === cor ? 'sel' : ''}">${esc(c)}</button>`).join('')}</div>` : ''}
+        ${D.mostrarPreco ? pagamentosValorHtml(p.preco) : ''}
+        ${D.pedidos ? `<span class="prov-retira">${ICONE_RELOGIO} Separamos por ${D.prazoReserva} dias no seu nome · você paga na loja</span>` : ''}
         <span class="aviso-escolha" id="aviso-escolha" hidden></span>
         <div class="prov-acoes">
           ${coracao(p, 'bt-fav bt-fav-g')}
-          <button class="bt-linha" id="prov-sacola">${ICONE_MAIS} Pôr na sacola</button>
-          ${D.whatsapp || D.pedidos ? '<button class="bt-ouro" id="prov-quero">Quero essa!</button>' : ''}
+          <button class="bt-sacola-g" id="prov-sacola" aria-label="Pôr na sacola" title="Pôr na sacola">${ICONE_LOJA}<b>+</b></button>
+          ${D.pedidos ? `<button class="bt-ouro bt-reservar" id="prov-quero">${ICONE_LOJA} Finalizar reserva</button>`
+            : D.whatsapp ? '<button class="bt-ouro bt-reservar" id="prov-quero">Quero essa! (WhatsApp)</button>' : ''}
         </div>
       </div>
       <button class="compartilhar" id="prov-link" aria-label="Compartilhar esta peça">${ICONE_LINK}<span>Compartilhar</span></button>
@@ -1269,6 +1371,11 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
       }
     });
     fotosEl.addEventListener('pointercancel', () => { toque = null; });
+    const marcarTam = () => {
+      const el = provador.querySelector('#tam-esc');
+      if (el) el.textContent = tam ? `· ${tam}` : '';
+      if (tam) provador.querySelector('#aviso-escolha').hidden = true;
+    };
     const ok = () => {
       const falta = [p.tamanhos.length && !tam && 'o tamanho', p.cores.length && !cor && 'a cor'].filter(Boolean);
       const av = provador.querySelector('#aviso-escolha');
@@ -1292,14 +1399,19 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
       if (e.target.closest('#prov-link')) return compartilhar(p);
       if (e.target.closest('#prov-lupa')) return abrirLupa(lista, foto, (i) => trocarFoto(i));
       const t = e.target.closest('[data-t]');
-      if (t) { tam = t.dataset.t; provador.querySelectorAll('[data-t]').forEach((b) => b.classList.toggle('sel', b === t)); return; }
+      if (t) { tam = t.dataset.t; provador.querySelectorAll('[data-t]').forEach((b) => b.classList.toggle('sel', b === t)); marcarTam(); return; }
       const c = e.target.closest('#esc-cor [data-c]');
       if (c) { cor = c.dataset.c; provador.querySelectorAll('#esc-cor [data-c]').forEach((b) => b.classList.toggle('sel', b === c)); return; }
       if (e.target.closest('#prov-fechar')) return fecharPeca();
       if (e.target.closest('#prov-sacola')) { if (ok()) { porNaSacola(p, tam, cor); fecharPeca(); } return; }
       if (e.target.closest('#prov-quero')) {
         if (!ok()) return;
-        if (D.pedidos) { porNaSacola(p, tam, cor); fecharPeca(); return abrirGaveta('sacola'); }
+        if (D.pedidos) {
+          porNaSacola(p, tam, cor);
+          fecharPeca();
+          abrirGaveta('dados');
+          return setTimeout(() => { const i = $('#form-pedido [name=nome]'); if (i && !i.value && !toqueTela) i.focus(); }, 350);
+        }
         window.open(zap(`Oi! Vi no catálogo e quero:\n• nº ${p.num} ${p.nome}${tam ? ` — Tam ${tam}` : ''}${cor ? ` · ${cor}` : ''}${D.mostrarPreco ? ` — ${brl(p.preco)}` : ''}`), '_blank');
       }
     };
@@ -1318,6 +1430,7 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
         if (tem) {
           tam = sug;
           provador.querySelectorAll('[data-t]').forEach((b) => b.classList.toggle('sel', b.dataset.t === sug));
+          marcarTam();
         }
       });
     }
@@ -1570,9 +1683,10 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
     const lista = $('#gaveta-lista');
     const pe = $('#gaveta-pe');
     if (etapa === 'feito' && ultimoPedido) {
-      lista.innerHTML = `<div class="feito"><span class="ok">${ICONE_OK}</span><h4>Pedido recebido!</h4>
+      lista.innerHTML = `<div class="feito"><span class="ok">${ICONE_OK}</span><h4>Reserva feita!</h4>
         <span class="cod">${esc(ultimoPedido.codigo)}</span>
-        <p>Já separamos suas peças por <b>${D.prazoReserva} dias</b>.<br>A loja vai te chamar no WhatsApp para combinar o pagamento e a retirada ou entrega.</p></div>`;
+        <p>Suas peças estão separadas na loja por <b>${D.prazoReserva} dias</b>, no seu nome.<br>A loja vai te chamar no WhatsApp para combinar o pagamento e a retirada ou entrega.</p>
+        ${D.mostrarPreco ? pagamentosHtml() : ''}</div>`;
       pe.innerHTML = D.whatsapp ? `<a class="bt-zap" target="_blank" rel="noopener" href="${zap(`Oi! Fiz o pedido nº ${ultimoPedido.codigo} pelo site 💕`)}">Falar com a loja no WhatsApp</a>` : '';
       return;
     }
@@ -1586,7 +1700,7 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
         <label>Observação (opcional)<textarea name="observacao" rows="3" maxlength="300" placeholder="Ex.: vou buscar no sábado / quero entrega no centro"></textarea></label>
         <span class="erro" id="erro-pedido" hidden></span>
       </form>`;
-      pe.innerHTML = '<button class="bt-pedido" id="confirmar-pedido">Confirmar pedido</button><button class="bt-voltar" id="voltar-sacola">← Voltar para a sacola</button>';
+      pe.innerHTML = '<button class="bt-pedido" id="confirmar-pedido">Confirmar reserva</button><button class="bt-voltar" id="voltar-sacola">← Voltar para a sacola</button>';
       return;
     }
     etapa = 'sacola';
@@ -1595,8 +1709,9 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
       <div><b>${esc(p.nome)}</b><small>nº ${p.num}${tam ? ` · Tam ${esc(tam)}` : ''}${cor ? ` · ${esc(cor)}` : ''}${D.mostrarPreco ? ` · ${brl(p.preco)}` : ''}</small></div>
       <button data-rm="${i}" aria-label="Tirar">${ICONE_X}</button></div>`).join('')
       : '<div class="gaveta-vazia">Sua sacola está vazia.<br>Toque no <b>+</b> das peças que gostar.</div>';
-    pe.innerHTML = itens.length ? `${D.mostrarPreco ? `<div class="gaveta-total"><span>${n} peça${n === 1 ? '' : 's'}</span><b>${brl(total)}</b></div>` : ''}
-      ${D.pedidos ? '<button class="bt-pedido" id="finalizar">Finalizar pedido</button>' : ''}
+    pe.innerHTML = itens.length ? `${D.mostrarPreco ? `<div class="gaveta-total"><span>${n} peça${n === 1 ? '' : 's'}</span><b>${brl(total)}</b></div>
+      ${pagamentosValorHtml(total)}` : ''}
+      ${D.pedidos ? `<button class="bt-pedido" id="finalizar">${ICONE_LOJA.replace('<svg', '<svg width="20" height="20"')} Finalizar reserva</button>` : ''}
       ${D.whatsapp ? `<button class="bt-zap" id="enviar-pedido" ${D.pedidos ? 'style="background:#fff;color:#1a7f45;border:1.5px solid #25d366;box-shadow:none"' : ''}>${D.pedidos ? 'Ou mandar a lista no WhatsApp' : 'Enviar pedido no WhatsApp'}</button>` : ''}` : '';
   }
 
@@ -1640,7 +1755,7 @@ body[data-tema=verao] .faixa { background: var(--rosa); color: #fff; }
     const ok = await enviarPedido(pedido);
     if (!ok) {
       b.disabled = false;
-      b.textContent = 'Confirmar pedido';
+      b.textContent = 'Confirmar reserva';
       err.hidden = false;
       err.textContent = 'Não consegui enviar agora (sem internet?). Tente de novo ou mande a lista no WhatsApp.';
       return;
